@@ -1,8 +1,17 @@
-import { getAllPosts } from "@/lib/content";
+import { getAllPosts, getPaginatedPosts } from "@/lib/content";
 import { PostCard } from "@/components/post-card";
+import { Pagination } from "@/components/pagination";
+import { Suspense } from "react";
 
-export default function LifePage() {
-  const posts = getAllPosts("life");
+interface LifePageProps {
+  searchParams: Promise<{ page?: string }>;
+}
+
+export default async function LifePage({ searchParams }: LifePageProps) {
+  const { page } = await searchParams;
+  const currentPage = parseInt(page || "1", 10);
+  const allPosts = getAllPosts("life");
+  const { posts, totalPages } = getPaginatedPosts(allPosts, currentPage);
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -15,11 +24,20 @@ export default function LifePage() {
             暂无生活文章
           </p>
         ) : (
-          <div className="space-y-6">
-            {posts.map((post) => (
-              <PostCard key={post.slug} post={post} />
-            ))}
-          </div>
+          <>
+            <div className="space-y-6">
+              {posts.map((post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
+            </div>
+            <Suspense fallback={null}>
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                basePath="/life"
+              />
+            </Suspense>
+          </>
         )}
       </div>
     </div>

@@ -8,6 +8,7 @@
 - ✅ 代码语法高亮
 - ✅ 文章标签系统
 - ✅ 两级目录分类（技术/生活）
+- ✅ 文章分页功能
 - ✅ 暗黑模式支持
 - ✅ Giscus 评论系统（基于 GitHub Discussions）
 - ✅ RSS 订阅
@@ -84,6 +85,25 @@ tags: ["标签1", "标签2"]
 npm run build
 npm start
 ```
+
+## 部署
+
+详细的部署指南请查看 [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+### 快速部署到 Vercel
+
+1. 将代码推送到 GitHub
+2. 访问 [vercel.com](https://vercel.com) 并使用 GitHub 登录
+3. 导入你的仓库
+4. 配置环境变量（见下方）
+5. 点击部署
+
+**必需的环境变量**：
+- `NEXT_PUBLIC_SITE_URL` - 你的网站 URL
+- `NEXT_PUBLIC_GISCUS_REPO` - GitHub 仓库（格式：username/repo）
+- `NEXT_PUBLIC_GISCUS_REPO_ID` - 仓库 ID
+- `NEXT_PUBLIC_GISCUS_CATEGORY` - 分类名称
+- `NEXT_PUBLIC_GISCUS_CATEGORY_ID` - 分类 ID
 
 ## 项目结构
 

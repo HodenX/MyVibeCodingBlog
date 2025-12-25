@@ -1,0 +1,11 @@
+# Vercel ignore file
+# Files and directories to exclude from Vercel deployments
+
+node_modules
+.next
+.vercel
+.env.local
+.env*.local
+*.log
+.DS_Store
+

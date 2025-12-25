@@ -16,15 +16,21 @@ export async function GET() {
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     ${posts
       .map(
-        (post) => `    <item>
+        (post) => {
+          const encodedSlug = encodeURIComponent(post.slug);
+          const pubDate = post.frontmatter.date 
+            ? new Date(post.frontmatter.date).toUTCString() 
+            : new Date().toUTCString();
+          return `    <item>
       <title>${escapeXml(post.frontmatter.title)}</title>
       <description>${escapeXml(
         post.frontmatter.description || ""
       )}</description>
-      <link>${siteUrl}/${post.category}/${post.slug}</link>
-      <guid>${siteUrl}/${post.category}/${post.slug}</guid>
-      <pubDate>${new Date(post.frontmatter.date).toUTCString()}</pubDate>
-    </item>`
+      <link>${siteUrl}/${post.category}/${encodedSlug}</link>
+      <guid>${siteUrl}/${post.category}/${encodedSlug}</guid>
+      <pubDate>${pubDate}</pubDate>
+    </item>`;
+        }
       )
       .join("\n")}
   </channel>

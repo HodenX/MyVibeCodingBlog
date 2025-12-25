@@ -6,7 +6,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/80">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="text-xl font-bold text-gray-900 dark:text-gray-100">
-          我的博客
+          Computing&Life
         </Link>
         <nav className="flex items-center gap-6">
           <Link
